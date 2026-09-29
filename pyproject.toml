@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "tp_prediction_automobile"
+version = "0.0.1"
+description = "Pr\u00e9dire le prix du march\u00e9 vehicule automobile"
+authors = [
+  { name = "Issam Lemterif" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+requires-python = "~=3.10.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["tp_prediction_automobile"]
+include = ["pyproject.toml", "tp_prediction_automobile/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["tp_prediction_automobile"]
+force-sort-within-sections = true
+

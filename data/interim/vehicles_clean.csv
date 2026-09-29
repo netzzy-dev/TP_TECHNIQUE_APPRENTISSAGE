@@ -1,0 +1,544 @@
+YEAR,KM,BODYDOORS,PASSENGERS,MAKE,MODEL,BODYDESCF,DRIVETRAIN,FUEL,TRANSDESCF,COLORF,PRICE
+2024,14243,4,5,Nissan,Versa,Berline,Traction avant,Essence,Automatique,Gris,18995
+2021,58800,4,5,Ford,Escape,VUS,4 roues motrices,Essence,Automatique,Noir,18995
+2019,85525,2,0,Chevrolet,Express Commercial Cutaway,Berline,Propulsion,Essence,Automatique,Blanc,26995
+2023,60820,4,5,Hyundai,Venue,VUS,Traction avant,Essence,Automatique,Bleu,17995
+2020,103329,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Automatique,Argent,17495
+2023,75646,4,5,Chevrolet,Equinox,VUS,4 roues motrices,Essence,Automatique,Argent,24995
+2021,76203,4,5,Volvo,XC40,VUS,4 roues motrices,Essence,Automatique,Blanc,25995
+2023,63937,4,5,Infiniti,QX50,VUS,4 roues motrices,Essence,Automatique,Noir,32995
+2023,44927,4,5,Audi,A3 SEDAN,Berline,4 roues motrices,Essence,Automatique,Gris,29495
+2024,41209,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Noir,21495
+2023,25329,4,5,Nissan,Rogue,VUS,4 roues motrices,Essence,Automatique,Argent,24995
+2024,69740,4,5,Nissan,Versa,Berline,Traction avant,Essence,Automatique,Noir,18495
+2025,39286,4,5,Kia,K4,Berline,Traction avant,Essence,Automatique,Bleu,22495
+2019,115111,4,5,Hyundai,Santa Fe,VUS,Autre,Essence,Automatique,Noir,16995
+2023,84368,4,5,Kia,Sportage,VUS,4 roues motrices,Essence,Automatique,Gris,25495
+2021,105495,4,5,Hyundai,Kona,VUS,4 roues motrices,Essence,Automatique,Noir,17995
+2023,43582,4,5,Hyundai,Tucson,VUS,4 roues motrices,Essence,Automatique,Noir,27495
+2020,72332,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Gris,15995
+2022,99609,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Jaune,19995
+2021,41465,4,5,Jeep,Gladiator,Camion,4 roues motrices,Essence,Automatique,Noir,37995
+2020,71938,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Rouge,19495
+2020,115257,4,7,Chrysler,Pacifica,Minifourgonnette,Traction avant,Essence,Automatique,Blanc,23995
+2021,65379,4,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Rouge,19995
+2019,56121,4,5,Honda,CR-V,VUS,Traction intégrale,Essence,Automatique,Gris,23995
+2023,29429,5,5,Nissan,Qashqai,VUS,Traction avant,Essence,Automatique,Gris,19495
+2025,54400,5,5,Volkswagen,Taos,VUS,Traction intégrale,Essence,Automatique,Gris,27995
+2022,21511,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Rouge,18995
+2019,87383,4,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Noir,18495
+2019,58640,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Bleu,15495
+2019,110339,4,5,Hyundai,Santa Fe,VUS,Traction avant,Essence,Automatique,Blanc,16995
+2022,62178,4,5,Nissan,Rogue,VUS,Traction avant,Essence,Automatique,Rouge,19995
+2019,108275,4,5,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Gris,16995
+2020,50822,5,5,Hyundai,Santa Fe,VUS,Traction intégrale,Essence,Automatique,Blanc,25995
+2022,71758,4,5,Nissan,Versa,Berline,Traction avant,Essence,Automatique,Gris,16995
+2018,38471,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Noir,13995
+2022,71301,4,5,Volvo,S60,Berline,Traction intégrale,Essence,Automatique,Blanc,31995
+2021,54323,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Noir,17795
+2018,104538,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Noir,18995
+2019,103335,5,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Automatique,Argent,17495
+2019,105784,5,5,Mitsubishi,Outlander,VUS,4 roues motrices,Essence,Automatique,Noir,16495
+2020,35000,4,5,Porsche,Taycan,Berline,Traction intégrale,Électrique,Automatique,Blanc,89999
+2019,83113,4,5,Mazda,Mazda3,Berline,Traction intégrale,Essence,Automatique,Noir,18995
+2021,76986,4,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Gris,32995
+2024,51420,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,23495
+2023,65447,4,5,Chevrolet,Bolt EUV,VUS,Traction avant,Électrique,Automatique,Argent,23995
+2022,51388,5,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Blanc,36995
+2022,85528,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,21995
+2021,116477,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Noir,17995
+2019,48276,4,5,Mazda,Mazda3,Berline,Traction avant,Essence,Automatique,Gris,19995
+2021,40985,4,5,Hyundai,Venue,VUS,Traction avant,Essence,Automatique,Blanc,16495
+2023,32607,4,7,Mitsubishi,Outlander,VUS,Traction intégrale,Essence,Automatique,Rouge,32495
+2023,114016,5,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Gris,21995
+2023,115758,5,5,GMC,Terrain,VUS,Traction avant,Essence,Automatique,Blanc,19995
+2025,27131,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Blanc,22495
+2019,97017,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Gris,17995
+2022,64270,4,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Noir,24495
+2025,48757,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Blanc,29995
+2024,82130,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Noir,25995
+2024,43169,4,5,Volkswagen,Taos,VUS,Traction intégrale,Essence,Automatique,Blanc,28495
+2024,78111,4,5,Ford,Maverick,Camion,Traction intégrale,Essence,Automatique,Blanc,30995
+2024,37757,5,8,Nissan,Pathfinder,VUS,4 roues motrices,Essence,Automatique,Noir,37995
+2024,53100,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Noir,21995
+2025,47126,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Noir,21995
+2024,44298,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Noir,28995
+2019,97024,5,5,Toyota,RAV4,VUS,Traction intégrale,Essence,Automatique,Blanc,26995
+2019,112454,5,5,Toyota,RAV4,VUS,Traction intégrale,Essence,Automatique,Blanc,24495
+2020,86760,4,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Manuelle,Blanc,11995
+2023,44304,5,5,Hyundai,Santa Fe,VUS,Traction intégrale,Essence,Automatique,Charbon,29995
+2018,19385,5,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Argent,18995
+2021,61648,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Noir,15995
+2023,68542,4,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Blanc,39995
+2023,48998,4,5,Kia,Forte,Berline,Traction avant,Essence,Automatique,Charbon,18995
+2021,83885,4,5,Chevrolet,Bolt EV,VUS,Traction avant,Électrique,Automatique,Bleu,20495
+2022,79468,4,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Bronze,20995
+2024,47868,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Gris,20995
+2018,88735,4,5,Mercedes-Benz,C 300,Berline,Traction intégrale,Essence,Automatique,Blanc,20495
+2022,95294,4,8,Nissan,Pathfinder,VUS,4 roues motrices,Essence,Automatique,Noir,27495
+2023,30778,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Blanc,23495
+2023,84870,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,23995
+2023,81926,4,5,Ford,Maverick Hybrid,Berline,Traction avant,Hybride,Automatique,Noir,29995
+2023,68624,4,5,Ford,Maverick,Camion,Traction intégrale,Essence,Automatique,Blanc,31995
+2023,66074,4,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Gris,26995
+2021,63452,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Automatique,Rouge,14995
+2023,63013,5,5,Kia,Forte5,Berline,Traction avant,Essence,Automatique,Noir,21995
+2017,98530,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Manuelle,Charbon,11995
+2021,79605,5,5,Mercedes-Benz,GLA,VUS,Traction intégrale,Essence,Automatique,Gris,26795
+2017,85892,4,5,Honda,Fit,Berline,Traction avant,Essence,Automatique,Noir,16995
+2023,57797,4,5,Genesis,G70,Berline,Traction intégrale,Essence,Automatique,Bleu,31995
+2021,115007,5,5,Mazda,CX-3,VUS,Traction intégrale,Essence,Automatique,Blanc,18995
+2023,64188,4,5,Nissan,Altima,Berline,Traction intégrale,Essence,Automatique,Gris,20795
+2021,74624,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Bleu,17995
+2022,55084,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Automatique,Noir,16495
+2022,38360,4,5,Hyundai,Sonata,Berline,Traction avant,Essence,Automatique,Rouge,25995
+2023,81157,5,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Noir,22995
+2007,114165,2,2,Mazda,MX-5,Décapotable,Propulsion,Essence,Manuelle,Noir,13995
+2023,59331,5,5,Kia,EV6,VUS,Traction intégrale,Électrique,Automatique,Noir,36995
+2024,29990,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,24995
+2019,108465,4,5,Hyundai,Accent,Berline,Traction avant,Essence,Manuelle,Blanc,12995
+2023,81155,4,8,Kia,Carnival,Minifourgonnette,Traction avant,Essence,Automatique,Noir,33495
+2024,69764,5,5,Volkswagen,Taos,VUS,Traction avant,Essence,Automatique,Noir,23495
+2024,37956,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,24495
+2025,18149,5,5,Chevrolet,Equinox,VUS,Traction avant,Essence,Automatique,Charbon,29995
+2020,34552,5,5,Hyundai,Accent,Berline,Traction avant,Essence,Automatique,Noir,16995
+2019,111492,4,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Gris,12495
+2023,61068,4,5,Hyundai,Santa Cruz,Camion,Traction intégrale,Essence,Automatique,Noir,30995
+2024,85023,4,5,Kia,Niro EV,VUS,Traction avant,Électrique,Automatique,Bleu,27995
+2020,79352,4,5,Mercedes-Benz,A 220,Berline,Traction intégrale,Essence,Automatique,Bleu,22495
+2023,64826,5,5,Chevrolet,TrailBlazer,VUS,Traction intégrale,Essence,Automatique,Blanc,22495
+2022,61029,4,6,Mazda,CX-9,VUS,Traction intégrale,Essence,Automatique,Rouge,30995
+2022,91181,4,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Bronze,25995
+2022,73314,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Automatique,Blanc,22995
+2020,66416,4,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Bleu,19495
+2021,54742,4,5,Mazda,Mazda3,Berline,Traction intégrale,Essence,Automatique,Charbon,21995
+2021,118758,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Blanc,18995
+2025,46085,4,5,Jeep,Grand Cherokee 4xe,VUS,4 roues motrices,PHEV,Automatique,Argent,41995
+2017,91854,4,5,MINI,Cooper S 3 Door,Hatchback,Traction avant,Essence,Automatique,Noir,14995
+2021,129811,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,18995
+2021,80603,4,5,Kia,Seltos,VUS,Traction avant,Essence,Automatique,Jaune,16995
+2020,107457,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Rouge,28995
+2024,83876,4,5,Mazda,CX-30,VUS,Traction intégrale,Essence,Automatique,Blanc,21995
+2019,83678,4,5,Volvo,S60,Berline,Traction intégrale,Essence,Automatique,Argent,23995
+2021,55894,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Noir,15995
+2018,86923,5,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Automatique,Bleu,16995
+2020,116391,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Charbon,29995
+2021,74708,4,5,Honda,Civic,Berline,Traction avant,Essence,Automatique,Gris,20995
+2020,67561,4,5,Honda,Civic,Berline,Traction avant,Essence,Manuelle,Gris,18495
+2023,41056,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Charbon,31495
+2018,57570,4,5,MINI,Countryman,VUS,Traction intégrale,Essence,Manuelle,Gris,17995
+2023,55528,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Gris,19495
+2021,59527,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Bleu,16995
+2023,81399,4,5,Jeep,Wrangler,VUS,4 roues motrices,Essence,Automatique,Rouge,36995
+2021,69672,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Noir,15995
+2021,75703,4,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Gris,21495
+2022,85626,4,6,Ford,F-150,Camion,4 roues motrices,Essence,Automatique,Charbon,38995
+2023,75422,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Noir,37995
+2022,107118,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Bleu,20995
+2024,49790,4,5,Nissan,LEAF,Hatchback,Traction avant,Électrique,Automatique,Bleu,24995
+2020,104837,4,5,Kia,Rio5,Hatchback,Traction avant,Essence,Manuelle,Blanc,12995
+2017,97752,4,5,Kia,Rio,Berline,Traction avant,Essence,Automatique,Gris,9995
+2022,96471,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Rouge,21995
+2020,46173,4,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Automatique,Gris,20995
+2022,120430,4,5,Hyundai,Kona,VUS,Traction avant,Essence,Automatique,Bleu,24995
+2024,88500,4,5,Ford,F-150 Lightning,Camion,Traction intégrale,Électrique,Automatique,Bleu,53995
+2018,114172,4,5,Kia,Rio5,Hatchback,Traction avant,Essence,Automatique,Bleu,12995
+2023,29552,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Blanc,19995
+2022,77846,4,5,Volvo,XC40,VUS,Traction intégrale,Essence,Automatique,Noir,27995
+2024,68609,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Bleu,25995
+2021,55917,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Noir,20495
+2022,67703,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Blanc,17495
+2022,62907,4,5,Jeep,Compass,VUS,4 roues motrices,Essence,Automatique,Argent,21995
+2023,72476,4,7,Mitsubishi,Outlander PHEV,VUS,Traction intégrale,Essence,Automatique,Noir,33995
+2022,67988,5,5,GMC,Terrain,VUS,Traction intégrale,Essence,Automatique,Noir,24995
+2018,68759,2,4,GMC,Canyon,Camion,4 roues motrices,Essence,Automatique,Noir,26995
+2022,118586,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Rouge,34995
+2022,76101,4,5,Hyundai,Kona,VUS,Traction avant,Essence,Automatique,Blanc,17995
+2018,78070,4,5,Nissan,Qashqai,VUS,Traction intégrale,Essence,Automatique,Bleu,13495
+2024,67084,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Noir,29995
+2019,99702,5,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Noir,12995
+2020,126880,5,7,Mitsubishi,Outlander,VUS,4 roues motrices,Essence,Automatique,Noir,19995
+2018,127000,4,5,Chevrolet,Colorado,Camion,4 roues motrices,Essence,Automatique,Blanc,23995
+2020,59990,5,5,Volvo,XC40,VUS,Traction intégrale,Essence,Automatique,Rouge,24495
+2020,111754,5,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Bleu,17495
+2023,47271,5,5,GMC,Terrain,VUS,Traction intégrale,Essence,Automatique,Noir,29995
+2021,50780,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Automatique,Bleu pâle,15995
+2022,61862,4,5,Chevrolet,Bolt EUV,VUS,Traction avant,Électrique,Automatique,Noir,24495
+2019,55751,4,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Bleu,14495
+2023,100648,5,7,Chrysler,Pacifica,Minifourgonnette,Traction avant,Essence,Automatique,Blanc,27495
+2022,82290,4,5,Hyundai,Venue,VUS,Traction avant,Essence,Automatique,Blanc,16995
+2020,54515,4,5,Hyundai,Accent,Berline,Traction avant,Essence,Automatique,Bleu,14995
+2022,95367,4,5,Kia,Seltos,VUS,Traction avant,Essence,Automatique,Jaune,16995
+2020,74545,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Rouge,17995
+2024,29746,4,5,Volkswagen,Taos,VUS,Traction intégrale,Essence,Automatique,Noir,23995
+2023,86092,4,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Vert,24995
+2024,52635,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Gris,30495
+2022,95515,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Noir,19995
+2023,104219,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Gris,24495
+2023,23836,4,5,Hyundai,Kona,VUS,Traction avant,Électrique,Automatique,Blanc,26995
+2022,66823,4,7,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Gris,26995
+2018,115204,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,13995
+2019,116442,4,5,Mazda,CX-3,VUS,Traction intégrale,Essence,Automatique,Blanc,16995
+2023,102064,4,5,Chevrolet,Bolt EUV,VUS,Traction avant,Électrique,Automatique,Gris,22995
+2024,53596,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Manuelle,Noir,17995
+2019,19795,4,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Bleu,15995
+2023,36962,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Automatique,Argent,20995
+2022,67197,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Noir,23495
+2020,108033,4,5,Mazda,CX-30,VUS,Traction intégrale,Essence,Automatique,Rouge,20995
+2024,67531,4,7,Mitsubishi,Outlander PHEV,VUS,Traction intégrale,PHEV,Automatique,Noir,34995
+2023,117036,5,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Orange,18995
+2019,116757,5,5,Nissan,Rogue,VUS,Traction avant,Essence,Automatique,Blanc,13495
+2025,35870,2,2,Chevrolet,Express Commercial Cutaway,Berline,Propulsion,Essence,Automatique,Blanc,54995
+2023,98046,5,6,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Bleu,29995
+2023,69946,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Gris,18995
+2018,65424,5,5,Mazda,Mazda3 Sport,Hatchback,Traction avant,Essence,Automatique,Blanc,16995
+2022,56639,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Gris,17995
+2019,78383,4,5,BMW,X1,VUS,Traction intégrale,Essence,Automatique,Gris,19995
+2023,73825,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Blanc,32995
+2024,16959,4,5,Nissan,Ariya,VUS,Traction avant,Électrique,Automatique,Bleu,35495
+2019,96719,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Charbon,14495
+2022,55000,4,5,Volvo,XC60,VUS,Traction intégrale,Essence,Automatique,Noir,31995
+2022,60500,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Gris,16995
+2023,30465,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Blanc,19995
+2021,114475,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Bleu,19995
+2022,77080,4,6,Chevrolet,Silverado 2500 HD,Camion,4 roues motrices,Diesel,Automatique,Noir,50995
+2024,44779,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Argent,30495
+2019,80387,4,5,Kia,Forte,Berline,Traction avant,Essence,Automatique,Noir,13995
+2020,72801,4,5,Kia,Soul,VUS,Traction avant,Essence,Automatique,Blanc,17495
+2022,82661,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Bleu,14995
+2024,23189,2,4,Subaru,BRZ,Coupé,Propulsion,Essence,Manuelle,Bleu,32995
+2017,94226,4,5,Chevrolet,Sonic,Berline,Traction avant,Essence,Automatique,Bleu,11995
+2018,104405,4,5,Nissan,LEAF,Hatchback,Traction avant,Électrique,Automatique,Bleu,12995
+2021,111078,4,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Gris,18995
+2024,53008,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Bleu,27495
+2024,53649,5,5,Subaru,Crosstrek,VUS,Traction intégrale,Essence,Automatique,Noir,25495
+2022,63446,4,5,Honda,Civic,Berline,Traction avant,Essence,Automatique,Noir,22995
+2025,54474,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Noir,43995
+2023,97141,4,5,BMW,X3,VUS,Traction intégrale,Essence,Automatique,Blanc,31995
+2023,72327,4,5,Mazda,CX-50,VUS,Traction intégrale,Essence,Automatique,Vert,31995
+2022,66353,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Noir,18495
+2019,96068,4,5,Hyundai,Kona,VUS,Traction avant,Essence,Automatique,Rouge,14995
+2019,81084,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Blanc,15495
+2018,77762,4,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Manuelle,Gris,16995
+2021,45034,4,5,Toyota,C-HR,VUS,Traction avant,Essence,Automatique,Noir,24495
+2022,64300,4,5,GMC,Terrain,VUS,Traction intégrale,Essence,Automatique,Noir,21995
+2025,49074,4,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Beige,28995
+2024,56804,4,5,GMC,Terrain,VUS,Traction intégrale,Essence,Automatique,Blanc,25995
+2022,51590,4,5,Nissan,Qashqai,VUS,Traction avant,Essence,Automatique,Blanc,17995
+2012,34356,4,5,Chevrolet,Cruze,Berline,Traction avant,Essence,Manuelle,Noir,6995
+2018,108541,4,5,Mazda,Mazda3,Berline,Traction avant,Essence,Manuelle,Noir,12995
+2020,75768,2,5,Chevrolet,Colorado,Camion,4 roues motrices,Essence,Automatique,Noir,32995
+2023,63856,4,5,Nissan,Altima,Berline,Traction intégrale,Essence,Automatique,Blanc,23995
+2022,90581,4,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Gris,32995
+2023,53953,4,5,Jeep,Wrangler,VUS,4 roues motrices,Essence,Automatique,Argent,36995
+2021,54414,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Gris,17495
+2023,64587,4,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Noir,25995
+2023,50721,5,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Gris,21495
+2019,74368,4,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Bleu,14495
+2019,52958,4,7,Dodge,Grand Caravan,Minifourgonnette,Traction avant,Essence,Automatique,Bleu,22995
+2024,58950,4,5,GMC,Terrain,VUS,Traction intégrale,Essence,Automatique,Argent,25995
+2024,17679,4,5,Ford,Escape Plug-in Hybrid,VUS,Traction avant,PHEV,Automatique,Noir,28495
+2023,100861,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Blanc,30995
+2021,72319,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Rouge,32995
+2020,89435,4,5,Nissan,Rogue,VUS,Traction avant,Essence,Automatique,Gris,14995
+2023,75900,4,5,Hyundai,Venue,VUS,Traction avant,Essence,Automatique,Noir,16995
+2018,94152,4,5,Kia,Sorento,VUS,4 roues motrices,Essence,Automatique,Rouge,17995
+2022,76023,4,5,Mitsubishi,Mirage,Berline,Traction avant,Essence,Automatique,Bleu,14495
+2021,56382,4,5,Mitsubishi,RVR,VUS,4 roues motrices,Essence,Automatique,Blanc,19495
+2020,84367,4,5,Kia,Sorento,VUS,4 roues motrices,Essence,Automatique,Noir,18495
+2021,61879,4,5,Ford,EcoSport,VUS,4 roues motrices,Essence,Automatique,Argent,17495
+2024,68263,4,5,Nissan,Altima,Berline,4 roues motrices,Essence,Automatique,Argent,22995
+2023,55629,4,5,Nissan,Rogue,VUS,4 roues motrices,Essence,Automatique,Noir,25995
+2023,70829,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Blanc,21995
+2024,68479,4,5,Nissan,Altima,Berline,4 roues motrices,Essence,Automatique,Gris,22995
+2019,65057,4,5,Kia,Sportage,VUS,4 roues motrices,Essence,Automatique,Blanc,17495
+2024,21146,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Gris,22495
+2022,77881,4,5,Hyundai,Santa Fe,VUS,4 roues motrices,Essence,Automatique,Noir,23995
+2020,99163,4,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Rouge,17995
+2023,90910,4,5,Volkswagen,Taos,VUS,4 roues motrices,Essence,Automatique,Blanc,21995
+2019,48281,5,5,Kia,Rio5,Hatchback,Autre,Essence,Automatique,Bleu,15495
+2016,62217,5,5,Kia,Rio,Berline,Autre,Essence,Automatique,Bleu,10495
+2022,67759,5,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Blanc,25995
+2023,36705,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Blanc,24495
+2023,93541,4,5,Hyundai,Tucson,VUS,Traction intégrale,Essence,Automatique,Noir,26495
+2024,61308,5,5,Volkswagen,Taos,VUS,Traction avant,Essence,Automatique,Gris,22495
+2020,128871,5,7,Mazda,CX-9,VUS,Traction intégrale,Essence,Automatique,Gris,21995
+2023,78264,4,5,VINFAST,VF8,VUS,Traction intégrale,Électrique,Automatique,Blanc,25995
+2025,44873,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Charbon,29995
+2025,48582,5,5,Ford,Escape,VUS,Traction intégrale,Essence,Automatique,Blanc,25995
+2023,19873,5,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Noir,26995
+2023,54965,5,5,Mazda,CX-30,VUS,Traction intégrale,Essence,Automatique,Charbon,24995
+2021,96509,5,7,Chrysler,Pacifica Hybrid,Minifourgonnette,Traction avant,PHEV,Automatique,Gris,29495
+2025,15400,5,5,Buick,Envision,VUS,Traction intégrale,Essence,Automatique,Noir,35995
+2020,103231,4,5,Toyota,C-HR,VUS,Traction avant,Essence,Automatique,Gris,20995
+2019,96188,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Automatique,Bleu,14995
+2023,77827,5,7,Chrysler,Grand Caravan,Minifourgonnette,Traction avant,Essence,Automatique,Rouge,29995
+2024,72954,5,5,Volkswagen,Taos,VUS,Traction avant,Essence,Automatique,Gris,22495
+2018,108248,5,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Automatique,Blanc,16995
+2019,104571,4,5,Hyundai,Santa Fe,VUS,Traction avant,Essence,Automatique,Bleu,16995
+2022,96662,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Blanc,16995
+2018,112611,4,5,Volvo,S60,Berline,Traction intégrale,Essence,Automatique,Noir,17995
+2025,44558,5,5,Ford,Escape,VUS,Traction avant,PHEV,Automatique,Noir,28995
+2022,88368,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Gris,18995
+2024,59948,4,5,Hyundai,Tucson,VUS,Traction intégrale,Essence,Automatique,Blanc,28995
+2021,119794,4,5,Jeep,Wrangler,VUS,4 roues motrices,Essence,Automatique,Noir,29495
+2022,103361,4,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Charbon,32995
+2020,82972,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Orange,18995
+2021,101150,5,7,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Blanc,23995
+2021,83032,5,5,Alfa Romeo,Stelvio,VUS,Traction intégrale,Essence,Automatique,Argent,23995
+2021,35161,4,5,Audi,Q3,VUS,Traction intégrale,Essence,Automatique,Blanc,28495
+2021,77122,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Noir,20495
+2024,52829,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Gris,25495
+2023,71573,5,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Charbon,25995
+2021,90904,4,5,Volkswagen,Golf,Coupé,Traction avant,Essence,Automatique,Rouge,18995
+2023,53047,5,5,Hyundai,Venue,VUS,Traction avant,Essence,Automatique,Argent,19495
+2021,104222,5,5,Toyota,RAV4,VUS,Traction intégrale,Essence,Automatique,Charbon,25995
+2019,75354,5,7,Infiniti,QX60,VUS,Traction intégrale,Essence,Automatique,Blanc,22995
+2024,39894,5,5,GMC,Terrain,VUS,Traction intégrale,Essence,Automatique,Argent,27795
+2023,37915,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Blanc,23995
+2024,11180,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Charbon,20495
+2022,78421,5,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Blanc,36495
+2024,37407,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Blanc,24495
+2022,90560,5,5,Jeep,Wrangler 4xe,VUS,4 roues motrices,PHEV,Automatique,Blanc,34995
+2018,110869,5,5,Nissan,Qashqai,VUS,Traction intégrale,Essence,Automatique,Bleu,12995
+2023,29066,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Or,23995
+2023,117334,5,5,Toyota,RAV4,VUS,Traction intégrale,Essence,Automatique,Argent,28995
+2023,60605,5,5,Hyundai,Kona,VUS,Traction avant,Essence,Automatique,Blanc,21995
+2020,100440,4,5,Chevrolet,Trax,VUS,Traction avant,Essence,Automatique,Noir,14995
+2023,71876,4,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Gris,27495
+2024,34268,5,5,Mazda,CX-30,VUS,Traction intégrale,Essence,Automatique,Bleu,27995
+2022,76101,4,5,Hyundai,Santa Cruz,Camion,Traction intégrale,Essence,Automatique,Taupe,30495
+2019,101828,5,7,Ford,Explorer,VUS,4 roues motrices,Essence,Automatique,Charbon,22995
+2024,60649,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Noir,26995
+2024,77933,4,5,Volkswagen,Taos,VUS,Traction avant,Essence,Automatique,Bleu,23495
+2025,45700,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Noir,29995
+2023,58823,4,5,Hyundai,Tucson,VUS,Traction intégrale,Essence,Automatique,Noir,26995
+2024,62348,4,5,Volkswagen,Taos,VUS,Traction avant,Essence,Automatique,Bleu,23495
+2022,48802,4,5,Hyundai,Santa Cruz,Camion,Traction intégrale,Essence,Automatique,Blanc,32995
+2023,67185,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Gris,22995
+2023,81588,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Blanc,21995
+2021,83552,5,5,Volkswagen,Golf,Coupé,Traction avant,Essence,Manuelle,Blanc,20995
+2023,74621,5,5,Hyundai,Santa Fe,VUS,Traction intégrale,Essence,Automatique,Blanc,26495
+2021,122455,2,4,Jeep,Wrangler,VUS,4 roues motrices,Essence,Automatique,Blanc,24995
+2023,56454,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Noir,23995
+2018,50121,5,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Charbon,12995
+2019,69532,5,5,Hyundai,Santa Fe,VUS,Traction intégrale,Essence,Automatique,Brun,19995
+2025,52963,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Gris,29995
+2023,66856,4,5,Kia,Soul,VUS,Traction avant,Essence,Automatique,Blanc,20495
+2020,79046,5,5,Nissan,Qashqai,VUS,Traction avant,Essence,Automatique,Blanc,15995
+2020,112302,4,8,Hyundai,Palisade,VUS,Traction intégrale,Essence,Automatique,Noir,26495
+2021,111902,5,5,Buick,Encore GX,VUS,Traction intégrale,Essence,Automatique,Rouge,17995
+2022,33615,5,5,Chevrolet,TrailBlazer,VUS,Traction intégrale,Essence,Automatique,Rouge,23995
+2023,44656,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Argent,22995
+2024,46117,5,8,Hyundai,Palisade,VUS,Traction intégrale,Essence,Automatique,Noir,43995
+2020,113818,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Charbon,16495
+2019,115703,5,5,Kia,Rio5,Hatchback,Traction avant,Essence,Manuelle,Noir,12495
+2023,75209,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Blanc,32995
+2023,73954,4,5,Honda,HR-V,VUS,Traction intégrale,Essence,Automatique,Blanc,26995
+2023,30947,4,5,Kia,Forte,Berline,Traction avant,Essence,Automatique,Blanc,18995
+2021,103035,4,5,Mitsubishi,RVR,VUS,Traction avant,Essence,Automatique,Noir,15995
+2023,64141,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Gris,19995
+2022,45201,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Noir,17795
+2019,106231,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Manuelle,Rouge,13995
+2024,45745,5,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Gris,28495
+2023,57549,5,5,Mitsubishi,RVR,VUS,4 roues motrices,Essence,Automatique,Gris pâle,24995
+2017,81253,4,5,Mercedes-Benz,C 300,Berline,Traction intégrale,Essence,Automatique,Blanc,18995
+2022,89827,4,5,Kia,Soul,VUS,Traction avant,Essence,Automatique,Charbon,16995
+2023,47893,4,5,Kia,K5,Berline,Traction intégrale,Essence,Automatique,Blanc,24495
+2023,74051,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Noir,32495
+2019,91735,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Manuelle,Noir,13995
+2022,92422,4,5,Kia,Soul,VUS,Traction avant,Essence,Automatique,Gris,16995
+2021,88064,4,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Noir,19495
+2021,64425,5,5,Ford,Escape,VUS,Traction intégrale,Hybride,Automatique,Rouge,20495
+2024,21071,5,5,Buick,Encore GX,VUS,Traction intégrale,Essence,Automatique,Rouge,27495
+2021,82494,4,5,Nissan,Versa,Berline,Traction avant,Essence,Automatique,Gris,14495
+2022,87884,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Gris,16795
+2018,98495,5,5,Toyota,C-HR,VUS,Traction avant,Essence,Automatique,Argent,17995
+2019,52050,5,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Manuelle,Argent,18995
+2020,61406,5,5,Subaru,Outback,VUS,Traction intégrale,Essence,Automatique,Charbon,26995
+2023,72972,5,5,Jeep,Grand Cherokee 4xe,VUS,4 roues motrices,PHEV,Automatique,Argent,37995
+2021,79498,4,5,Kia,Rio5,Hatchback,Traction avant,Essence,Manuelle,Gris,14995
+2021,38611,5,5,Volkswagen,Golf,Coupé,Traction avant,Essence,Manuelle,Noir,22995
+2020,87300,5,5,Kia,Sportage,VUS,Traction avant,Essence,Automatique,Argent,16495
+2020,92067,5,5,Audi,Q5,VUS,Traction intégrale,Essence,Automatique,Noir,23495
+2024,55136,4,5,Kia,EV6,VUS,Traction intégrale,Essence,Automatique,Rouge,37495
+2020,101560,4,6,Ford,F-150,Camion,4 roues motrices,Essence,Automatique,Blanc,33995
+2019,85455,5,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Blanc,14495
+2023,77446,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Noir,29995
+2023,44113,5,5,Volkswagen,Taos,VUS,Traction avant,Essence,Automatique,Blanc,23495
+2022,45396,5,5,Kia,Soul,VUS,Traction avant,Essence,Automatique,Charbon,18995
+2021,60707,4,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Noir,26495
+2024,39895,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Charbon,21995
+2024,27828,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Gris,24795
+2021,34451,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Automatique,Noir,15995
+2024,24605,5,5,Nissan,LEAF,Hatchback,Traction avant,Électrique,Automatique,Noir,24995
+2023,36874,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Noir,19995
+2020,85920,5,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Noir,17495
+2020,41411,5,5,Kia,Rio5,Hatchback,Traction avant,Essence,Manuelle,Noir,14995
+2023,91766,4,5,Kia,Sportage,VUS,4 roues motrices,Essence,Automatique,Noir,28995
+2018,122790,4,7,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Rouge,16995
+2020,122663,4,7,Mitsubishi,Outlander,VUS,4 roues motrices,Essence,Automatique,Blanc,19995
+2023,94095,4,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Blanc,25995
+2023,69361,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Charbon,32495
+2024,109203,4,8,Kia,Carnival,Minifourgonnette,Traction avant,Essence,Automatique,Blanc,30995
+2020,68497,4,5,Mercedes-Benz,A 220,Berline,Traction intégrale,Essence,Automatique,Noir,22995
+2023,31359,4,5,Nissan,LEAF,Hatchback,Traction avant,Électrique,Automatique,Gris,22995
+2019,86399,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Blanc,13995
+2023,107798,4,5,Hyundai,Tucson,VUS,Traction avant,Essence,Automatique,Charbon,20995
+2022,120498,4,5,Hyundai,IONIQ 5,VUS,Propulsion,Électrique,Automatique,Noir,25995
+2022,56379,4,6,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Bleu,29995
+2021,79258,4,7,Honda,Pilot,VUS,Traction intégrale,Essence,Automatique,Noir,38995
+2020,86731,4,5,Mazda,CX-30,VUS,Traction intégrale,Essence,Automatique,Gris,21495
+2023,103154,5,5,Subaru,Outback,VUS,Traction intégrale,Essence,Automatique,Blanc,26995
+2019,132891,5,5,Nissan,Qashqai,VUS,Traction intégrale,Essence,Automatique,Rouge,13995
+2023,71663,5,5,Hyundai,Santa Fe,VUS,Traction intégrale,Essence,Automatique,Charbon,26495
+2019,83231,4,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Automatique,Rouge,17995
+2023,58104,5,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Gris,25495
+2010,88169,2,2,Nissan,370z,Coupé,Propulsion,Essence,Automatique,Bourgogne,18995
+2020,72044,5,5,Ford,Escape,VUS,Traction intégrale,Essence,Automatique,Noir,16995
+2016,87476,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Manuelle,Vert,8995
+2024,43374,4,5,Audi,Q3,VUS,Traction intégrale,Essence,Automatique,Blanc,34995
+2019,87233,5,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Blanc,12995
+2019,59316,5,5,Volkswagen,Golf,Coupé,Traction avant,Essence,Automatique,Blanc,18995
+2022,62557,5,5,Buick,Envision,VUS,Traction intégrale,Essence,Automatique,Noir,25995
+2022,86355,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Noir,32995
+2024,30115,5,7,Mitsubishi,Outlander,VUS,Traction intégrale,Essence,Automatique,Rouge,33995
+2023,77389,4,7,Mitsubishi,Outlander,VUS,Traction intégrale,Essence,Automatique,Argent,28995
+2022,55282,4,5,Hyundai,Santa Cruz,Camion,Traction intégrale,Essence,Automatique,Gris,31995
+2019,107549,5,5,Toyota,RAV4,VUS,Traction intégrale,Essence,Automatique,Argent,23995
+2023,64662,5,7,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Bleu,28995
+2019,108153,5,5,Mazda,CX-3,VUS,Traction intégrale,Essence,Automatique,Rouge,18995
+2024,43957,5,5,Hyundai,Venue,VUS,Traction avant,Essence,Automatique,Noir,19495
+2022,66263,5,5,Mercedes-Benz,A 250,Berline,Traction intégrale,Essence,Automatique,Charbon,28995
+2019,53030,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Étain,18995
+2024,62274,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Bleu,25995
+2024,73341,5,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Noir,25495
+2020,86881,5,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Blanc,18995
+2021,87425,5,5,Volkswagen,Golf,Coupé,Traction avant,Essence,Automatique,Noir,18995
+2021,44032,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Orange,18995
+2022,74573,4,5,Buick,Envision,VUS,Traction intégrale,Essence,Automatique,Noir,24995
+2025,37719,5,5,Volkswagen,Taos,VUS,Traction intégrale,Essence,Automatique,Gris,25495
+2024,71453,5,5,Honda,CR-V,VUS,Traction intégrale,Essence,Automatique,Gris,33495
+2022,92347,4,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Noir,20995
+2020,110762,5,5,Nissan,Qashqai,VUS,Traction intégrale,Essence,Automatique,Rouge,15495
+2022,74547,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Argent,43995
+2020,55613,4,5,Audi,Q3,VUS,Traction intégrale,Essence,Automatique,Noir,22995
+2019,89912,5,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Noir,12995
+2019,112594,5,5,Kia,Rio5,Hatchback,Traction avant,Essence,Manuelle,Argent,12495
+2019,69021,5,7,Nissan,Pathfinder,VUS,4 roues motrices,Essence,Automatique,Blanc,22995
+2022,108752,4,6,GMC,Sierra 1500,Camion,4 roues motrices,Essence,Automatique,Noir,34995
+2021,59432,4,8,Hyundai,Palisade,VUS,Traction intégrale,Essence,Automatique,Noir,32995
+2019,58170,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Automatique,Argent,12995
+2023,85529,5,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Argent,20995
+2024,50577,4,7,Mitsubishi,Outlander,VUS,Traction intégrale,Essence,Automatique,Argent,28995
+2023,47799,5,5,Kia,Seltos,VUS,Traction avant,Essence,Automatique,Orange,19995
+2022,43964,4,5,Ford,EcoSport,VUS,4 roues motrices,Essence,Automatique,Noir,18995
+2023,36663,2,4,Toyota,GR86,Berline,Propulsion,Essence,Manuelle,Bleu,33995
+2019,95406,4,5,Kia,Forte,Berline,Traction avant,Essence,Manuelle,Noir,12995
+2024,43001,5,5,Kia,Sportage,VUS,Traction intégrale,Essence,Automatique,Gris,31995
+2021,63561,5,5,Hyundai,Kona,VUS,Traction intégrale,Essence,Automatique,Bleu,19995
+2024,74112,5,5,Mazda,Mazda3 Sport,Hatchback,Traction intégrale,Essence,Automatique,Gris,24995
+2022,32886,4,5,Dodge,Charger,Berline,Propulsion,Essence,Automatique,Gris,41995
+2022,67378,5,5,Mazda,CX-3,VUS,Traction intégrale,Essence,Automatique,Bleu,21495
+2021,74820,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Gris,31995
+2023,36713,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Blanc,34995
+2024,51734,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Noir,28495
+2022,41114,5,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Gris,16995
+2022,64983,4,5,Volvo,XC40,VUS,Traction intégrale,Essence,Automatique,Noir,29995
+2020,94033,5,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Automatique,Bleu,17995
+2018,93857,5,5,Mitsubishi,Eclipse Cross,VUS,4 roues motrices,Essence,Automatique,Rouge,16995
+2024,103851,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Noir,36995
+2023,67186,5,5,Kia,Rio5,Hatchback,Traction avant,Essence,Automatique,Rouge,17995
+2024,56467,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Blanc,27495
+2023,95312,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Rouge,30995
+2022,50721,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Gris,32995
+2025,49938,5,5,Chevrolet,Equinox,VUS,Traction intégrale,Essence,Automatique,Blanc,31995
+2016,57825,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Gris,15495
+2021,49231,5,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Bleu,16995
+2025,14073,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Gris,22995
+2016,22627,4,6,Nissan,Titan XD,Berline,4 roues motrices,Diesel,Automatique,Noir,34995
+2023,58895,5,5,Chevrolet,TrailBlazer,VUS,Traction intégrale,Essence,Automatique,Noir,21995
+2023,125288,5,5,Toyota,Corolla Hatchback,Berline,Traction avant,Essence,Automatique,Argent,20995
+2020,98219,4,5,Hyundai,Santa Fe,VUS,Traction intégrale,Essence,Automatique,Bleu,19995
+2023,99051,4,7,Chrysler,Pacifica,Minifourgonnette,Traction intégrale,Essence,Automatique,Argent,29995
+2021,91507,5,5,Subaru,Crosstrek,VUS,Traction intégrale,Essence,Automatique,Noir,23995
+2020,95076,5,5,Toyota,Yaris hatchback,Berline,Traction avant,Essence,Manuelle,Blanc,16995
+2019,106634,4,5,Volkswagen,Jetta,Berline,Traction avant,Essence,Automatique,Bleu,14995
+2023,123423,5,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Gris,22495
+2018,60950,5,5,Hyundai,Elantra GT,Berline,Traction avant,Essence,Automatique,Charbon,14495
+2019,90196,4,5,Mazda,Mazda3,Berline,Traction avant,Essence,Automatique,Blanc,18995
+2021,108219,4,5,Kia,Forte,Berline,Traction avant,Essence,Automatique,Noir,14495
+2017,106125,2,4,Jeep,Wrangler,VUS,4 roues motrices,Essence,Automatique,Noir,19995
+2021,37704,5,5,Kia,Rio5,Hatchback,Traction avant,Essence,Automatique,Bleu,17995
+2022,75921,4,5,Toyota,Prius Prime,Berline,Traction avant,PHEV,Automatique,Argent,25995
+2019,64645,5,7,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Rouge,19995
+2022,111788,5,5,Kia,Niro,VUS,Traction avant,PHEV,Automatique,Gris,20995
+2023,43364,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Blanc,36995
+2020,53252,5,6,Mazda,CX-9,VUS,Traction intégrale,Essence,Automatique,Blanc,27995
+2023,44885,5,5,Mazda,Mazda3 Sport,Hatchback,Traction intégrale,Essence,Automatique,Charbon,27995
+2019,93907,5,5,Mazda,CX-3,VUS,Traction avant,Essence,Automatique,Blanc,15995
+2019,101763,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Manuelle,Charbon,10995
+2023,56267,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Argent,33995
+2025,71232,4,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,25995
+2024,39397,4,5,Kia,Forte,Berline,Traction avant,Essence,Automatique,Blanc,20995
+2019,19520,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Noir,16495
+2020,72998,4,5,Mazda,Mazda3 Sport,Hatchback,Traction intégrale,Essence,Automatique,Argent,20995
+2020,108195,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Rouge,26995
+2023,121653,5,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Noir,22495
+2021,70824,5,5,Toyota,RAV4,VUS,Traction avant,Essence,Automatique,Argent,26495
+2025,53518,4,6,Chevrolet,Silverado 1500,Camion,4 roues motrices,Essence,Automatique,Noir,43995
+2018,77372,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Noir,14995
+2022,58912,5,4,Chevrolet,Spark,Hatchback,Traction avant,Essence,Automatique,Bleu pâle,16495
+2019,79923,5,5,Nissan,Micra,Hatchback,Traction avant,Essence,Automatique,Noir,13495
+2019,105154,5,5,Mazda,CX-3,VUS,Traction intégrale,Essence,Automatique,Blanc,15995
+2021,109953,5,5,Subaru,Outback,VUS,Traction intégrale,Essence,Automatique,Noir,22995
+2021,84703,4,6,RAM,1500 Classic,Camion,4 roues motrices,Essence,Automatique,Noir,31995
+2024,101250,5,5,Chevrolet,Trax,VUS,Traction avant,Essence,Automatique,Blanc,20995
+2025,50569,5,5,Chevrolet,Equinox,VUS,Traction intégrale,Essence,Automatique,Vert,31995
+2020,101143,5,5,Buick,Encore,VUS,Traction intégrale,Essence,Automatique,Blanc,14995
+2017,130833,5,5,Subaru,Crosstrek,VUS,Traction intégrale,Essence,Manuelle,Rouge,13995
+2022,95268,4,5,Ford,Maverick Hybrid,Berline,Traction avant,Hybride,Automatique,Bleu,26495
+2025,56957,5,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Vert,28495
+2022,45827,4,5,MINI,Clubman,Coupé,Traction intégrale,Essence,Automatique,Rouge,27995
+2021,58274,4,5,Honda,Civic,Berline,Traction avant,Essence,Automatique,Gris,21495
+2021,52564,4,5,Subaru,Impreza,Berline,Traction intégrale,Essence,Automatique,Charbon,19495
+2025,21913,4,5,Nissan,Kicks,VUS,Traction intégrale,Essence,Automatique,Noir,25495
+2025,60925,5,5,Ford,Bronco Sport,VUS,4 roues motrices,Essence,Automatique,Blanc,27995
+2024,28464,5,5,Subaru,Impreza,Berline,Traction intégrale,Essence,Automatique,Noir,24495
+2023,72599,5,5,Hyundai,Kona Electric,VUS,Traction avant,Électrique,Automatique,Blanc,23995
+2021,81744,4,5,Hyundai,Elantra,Berline,Traction avant,Essence,Automatique,Rouge,17495
+2014,99656,2,5,Dodge,Challenger,Coupé,Propulsion,Essence,Automatique,Blanc,24995
+2019,53001,5,5,Ford,Escape,VUS,4 roues motrices,Essence,Automatique,Blanc,15995
+2022,70190,4,5,Subaru,Forester,VUS,Traction intégrale,Essence,Automatique,Bleu,32495
+2023,39501,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Noir,23995
+2021,98819,5,5,Nissan,Rogue,VUS,Traction intégrale,Essence,Automatique,Noir,19995
+2022,55012,5,5,Mazda,CX-5,VUS,Traction intégrale,Essence,Automatique,Blanc,26995
+2025,42370,5,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Noir,24995
+2021,58290,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Argent,20995
+2019,53722,4,5,Subaru,Impreza,Berline,Traction intégrale,Essence,Automatique,Bleu,16995
+2018,112377,5,5,Kia,Rio5,Hatchback,Traction avant,Essence,Automatique,Blanc,12995
+2026,11718,5,5,Honda,CR-V,VUS,Traction avant,Essence,Automatique,Noir,34495
+2021,27872,4,5,Nissan,Qashqai,VUS,Traction intégrale,Essence,Automatique,Bleu,20995
+2022,89676,4,5,Nissan,Sentra,Berline,Traction avant,Essence,Automatique,Charbon,16495
+2024,30906,4,5,Nissan,Ariya,VUS,Traction avant,Électrique,Automatique,Bleu,34495
+2018,46929,4,5,Hyundai,Santa Fe Sport,VUS,Traction intégrale,Essence,Automatique,Gris,15995
+2023,63370,4,5,Hyundai,Tucson,VUS,Traction avant,Essence,Automatique,Rouge,22995
+2019,118941,4,5,Hyundai,Tucson,VUS,Traction intégrale,Essence,Automatique,Noir,14995
+2019,119963,4,5,Nissan,Kicks,VUS,Traction avant,Essence,Automatique,Charbon,12995
+2023,105997,5,7,Chrysler,Pacifica,Minifourgonnette,Traction avant,Essence,Automatique,Noir,27995
+2020,93328,4,6,GMC,Sierra 1500,Camion,4 roues motrices,Essence,Automatique,Noir,32995
+2023,83210,4,7,Mazda,CX-9,VUS,Traction intégrale,Essence,Automatique,Noir,27995
+2024,73600,4,5,Volkswagen,Tiguan,VUS,Traction intégrale,Essence,Automatique,Charbon,25995
+2022,55098,5,7,Jeep,Grand Cherokee L,VUS,4 roues motrices,Essence,Automatique,Charbon,32995
+2019,86854,2,4,MINI,Convertible,Décapotable,Traction avant,Essence,Manuelle,Gris,17995
+2022,55733,4,5,Toyota,Corolla,Berline,Traction avant,Essence,Automatique,Noir,23995
+2025,75588,4,5,Kia,Seltos,VUS,Traction intégrale,Essence,Automatique,Gris,25995
+2023,112787,4,6,Kia,Sorento,VUS,Traction intégrale,Essence,Automatique,Blanc,27995
+2023,55902,4,5,Volkswagen,ID.4,VUS,Traction intégrale,Électrique,Automatique,Noir,31995
+2024,96997,5,7,Chrysler,Grand Caravan,Minifourgonnette,Traction avant,Essence,Automatique,Blanc,29995
+2021,75293,5,5,Volkswagen,Golf,Coupé,Traction avant,Essence,Manuelle,Blanc,20995
+2023,34353,4,5,Hyundai,Tucson,VUS,Traction intégrale,Essence,Automatique,Noir,29995
+2020,94221,4,5,Nissan,Qashqai,VUS,Traction intégrale,Essence,Automatique,Noir,15995
+2014,83134,4,5,Honda,Civic,Coupé,Traction avant,Essence,Automatique,Noir,13995
+2024,18785,4,8,Kia,Carnival,Minifourgonnette,Traction avant,Essence,Automatique,Noir,37495
+2025,9065,4,5,Mazda,CX-30,VUS,Traction intégrale,Essence,Automatique,Noir,30495
