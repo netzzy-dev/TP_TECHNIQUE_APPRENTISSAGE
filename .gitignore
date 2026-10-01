@@ -1,5 +1,5 @@
 # Data
-/data/raw/vehicles.csv
+/data/raw/*.csv
 
 # Mac OS-specific storage files
 .DS_Store
