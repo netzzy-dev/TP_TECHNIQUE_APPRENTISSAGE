@@ -12,5 +12,6 @@ def test_home():
     assert response.status_code == 200
     assert response.json() == {
         "message": "API de prédiction du prix automobile",
-        "model": "Lasso - modèle champion",
+        "model": "ElasticNetCV - modèle champion",
     }
+    

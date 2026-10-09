@@ -5,9 +5,11 @@ from fastapi import FastAPI
 import pandas as pd
 from pydantic import BaseModel
 
+
 app = FastAPI(
     title="API - Prédiction du prix automobile"
 )
+
 
 MODEL_PATH = (
     Path(__file__).resolve().parents[1]
@@ -15,22 +17,28 @@ MODEL_PATH = (
     / "best_model.joblib"
 )
 
+
 model = joblib.load(MODEL_PATH)
 
 
 estimator = model.named_steps["modele"]
 
 MODEL_NAME = estimator.__class__.__name__
-MODEL_ALPHA = estimator.alpha
+
+if hasattr(estimator, "alpha_"):
+    MODEL_ALPHA = float(estimator.alpha_)
+elif hasattr(estimator, "alpha"):
+    MODEL_ALPHA = float(estimator.alpha)
+else:
+    MODEL_ALPHA = None
+
 
 @app.get("/")
 def home():
     return {
         "message": "API de prédiction du prix automobile",
-        "model": "Lasso - modèle champion"
+        "model": f"{MODEL_NAME} - modèle champion"
     }
-
-
 
 
 class VehicleInput(BaseModel):
@@ -57,7 +65,7 @@ def predict(vehicle: VehicleInput):
     prediction = model.predict(input_data)
 
     return {
-    "prediction": float(prediction[0]),
-    "model_name": MODEL_NAME,
-    "alpha": MODEL_ALPHA
+        "prediction": float(prediction[0]),
+        "model_name": MODEL_NAME,
+        "alpha": MODEL_ALPHA
     }
