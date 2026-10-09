@@ -1,6 +1,10 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
+
   pull_request:
     branches:
       - main
@@ -23,7 +27,9 @@ jobs:
 
       - name: Executer les tests
         run: python -m pytest
+
   docker:
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
