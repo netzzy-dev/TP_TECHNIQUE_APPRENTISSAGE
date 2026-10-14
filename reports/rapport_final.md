@@ -6,21 +6,21 @@ Dans le secteur automobile, le prix d'un véhicule peut varier en fonction de pl
 
 L'objectif de ce projet est de développer un modèle de Machine Learning capable d'estimer le prix d'un véhicule à partir de ces caractéristiques.
 
-Le projet ne se limite pas à l'entraînement d'un modèle. Il met également en place une démarche MLOps simple permettant de suivre plusieurs expérimentations avec MLflow, de comparer leurs performances, de sélectionner un modèle final et de rendre celui-ci utilisable à travers une API FastAPI et une interface Streamlit.
+Le projet ne se limite pas à l'entraînement d'un modèle. Il compare plusieurs familles de modèles selon un protocole commun, suit les expérimentations finales avec MLflow, sélectionne un modèle champion et le rend utilisable à travers une API FastAPI et une interface Streamlit.
 
 La démarche générale du projet est la suivante :
 
-**Données → Préparation → Entraînement → Expérimentations MLflow → Comparaison → Sélection du modèle → FastAPI → Streamlit**
+**Données → Préparation → Modélisation et comparaison → Expérimentations MLflow → Sélection du modèle → FastAPI → Streamlit**
 
 ## 2. Description du dataset
 
-Le dataset utilisé dans ce projet provient d'un concessionnaire automobile. Il contient différentes caractéristiques descriptives de véhicules ainsi que leur prix.
+Les données proviennent d'un concessionnaire automobile. Elles contiennent différentes caractéristiques descriptives de véhicules ainsi que leur prix.
 
-Le dataset initial contient **544 observations**. Après les étapes de nettoyage et de préparation, **543 observations** sont conservées pour la modélisation.
+Deux fichiers bruts (`vehicles.csv` et `vehicles_2.csv`) ont été fusionnés puis dédoublonnés à l'aide de l'identifiant `ID`, en conservant la version la plus récente de chaque véhicule. La fusion est triée de façon stable (date de modification, puis `ID`) et écrite dans `data/interim/vehicles_merged.csv`, afin que l'ordre des lignes, et donc la séparation train/test, soit reproductible. Le dataset consolidé contient **1 748 véhicules** et 106 variables brutes. Aucune observation n'a été supprimée lors du nettoyage : **1 748 observations** sont utilisées pour la modélisation.
 
 La variable à prédire est :
 
-- `PRICE` : prix du véhicule.
+- `PRICE` : prix affiché du véhicule.
 
 Les variables explicatives retenues sont :
 
@@ -41,9 +41,16 @@ Les variables explicatives retenues sont :
 - `TRANSDESCF` : type de transmission ;
 - `COLORF` : couleur du véhicule.
 
-Après le nettoyage, le dataset utilisé pour la modélisation est sauvegardé dans :
+Le dataset préparé est sauvegardé dans `data/interim/vehicles_clean.csv`.
 
-`data/interim/vehicles_clean.csv`
+### Principaux constats de l'analyse exploratoire
+
+- La distribution du prix est asymétrique vers les prix élevés : médiane de 21 995 $, moyenne d'environ 23 600 $, maximum de 119 900 $. Environ 82 % des véhicules ont un prix compris entre 15 000 $ et 35 000 $.
+- Parmi les variables numériques, `YEAR` présente la corrélation la plus forte avec le prix (environ 0,56), suivie de `KM` (environ -0,29). `BODYDOORS` n'a presque pas de relation linéaire avec le prix.
+- Les prix médians diffèrent selon la marque et le type de carrosserie.
+- `MODEL` présente une forte cardinalité : 222 modèles différents, dont 147 apparaissent cinq fois ou moins (306 véhicules, environ 17,5 % du dataset).
+
+Ces constats ont orienté la modélisation : la forte cardinalité de `MODEL` produit un grand nombre de colonnes après encodage, ce qui motive l'utilisation de la régularisation, et la présence de véhicules très chers rend le RMSE sensible à quelques observations.
 
 ## 3. Type de problème
 
@@ -53,273 +60,186 @@ Il s'agit d'un apprentissage supervisé puisque le dataset contient, pour chaque
 
 Il s'agit plus précisément d'un problème de régression puisque la valeur à prédire est une valeur numérique continue : le prix d'un véhicule.
 
-L'objectif du modèle est donc d'apprendre la relation entre les caractéristiques des véhicules et leur prix afin de pouvoir estimer le prix d'un nouveau véhicule.
-
 ## 4. Préparation des données
 
-La préparation des données a été réalisée principalement dans le notebook :
+La préparation des données a été réalisée dans le notebook `notebooks/01_eda_preparation.ipynb`.
 
-`notebooks/01_eda_preparation.ipynb`
+### Sélection des variables
 
-Le dataset initial contenait **544 observations**. Après le nettoyage, **543 observations** ont été conservées pour la modélisation.
+Seules 11 variables explicatives ont été conservées parmi les 106 variables brutes. Les variables directement liées au prix (par exemple `LISTPRICE`, `COSTPRICE`, `WHOLESALEPRICE`, `basePrice` ou les informations de financement), les identifiants, les URL et les textes libres ont été exclus afin d'éviter les fuites de données.
 
-Le dataset nettoyé est sauvegardé dans :
+### Nettoyage
 
-`data/interim/vehicles_clean.csv`
+- Les valeurs manquantes de `FUEL` (10) et `DRIVETRAIN` (1) sont remplacées par la catégorie `Inconnu`.
+- Les cinq valeurs `BODYDOORS = 0` sont remplacées par la médiane des valeurs valides (4). Cette médiane est calculée sur l'ensemble du dataset, avant la séparation train/test ; l'effet est négligeable.
+- Les quatre valeurs `PASSENGERS = 0`, correspondant principalement à des véhicules commerciaux, sont conservées telles quelles.
+- Les valeurs extrêmes de prix et de kilométrage sont conservées puisqu'elles correspondent à des véhicules réels.
 
 ### Séparation des données
 
-Les données sont séparées en deux ensembles :
+Les données sont séparées en deux ensembles avec `random_state=42` :
 
-- **80 %** pour l'entraînement du modèle ;
-- **20 %** pour l'évaluation sur le jeu de test.
-
-La séparation est effectuée avec `random_state=42` afin de pouvoir reproduire le même découpage lors des expérimentations.
-
-Cette séparation produit :
-
-- **434 observations** pour l'entraînement ;
-- **109 observations** pour le test.
+- **80 %** pour l'entraînement, soit **1 398 observations** ;
+- **20 %** pour le test, soit **350 observations**.
 
 ### Transformation des variables
 
-Les variables catégorielles ne peuvent pas être utilisées directement par les modèles testés. Elles sont donc transformées avec :
+Les variables catégorielles sont transformées avec `OneHotEncoder(handle_unknown="ignore")`. Après encodage, les données d'entraînement comptent **288 colonnes**. L'option `handle_unknown="ignore"` évite une erreur lorsqu'une catégorie inconnue est rencontrée lors d'une prédiction.
 
-`OneHotEncoder(handle_unknown="ignore")`
+Deux prétraitements sont utilisés selon les modèles :
 
-Le One-Hot Encoding transforme les différentes catégories en variables numériques. L'option `handle_unknown="ignore"` permet également d'éviter une erreur lorsqu'une catégorie inconnue est rencontrée lors d'une future prédiction.
-
-Les variables numériques sont conservées telles quelles dans la version actuelle du projet.
+- variables numériques conservées telles quelles pour la régression linéaire, l'arbre de décision, RandomForest et XGBoost ;
+- variables numériques standardisées avec `StandardScaler` pour Ridge, Lasso et ElasticNet, afin que la pénalité de régularisation traite les variables sur une échelle comparable.
 
 ### Pipeline de prétraitement
 
-Un `ColumnTransformer` est utilisé pour appliquer les transformations appropriées selon le type de variable :
+Un `ColumnTransformer` applique les transformations appropriées selon le type de variable, puis il est combiné avec le modèle dans un pipeline `scikit-learn`.
 
-- One-Hot Encoding pour les variables catégorielles ;
-- conservation directe des variables numériques.
+Le pipeline est ajusté sur les seules données d'entraînement et réajusté dans chaque pli de validation croisée, ce qui évite les fuites de données lors de l'encodage et de la standardisation. Le pipeline complet est ensuite sauvegardé et réutilisé par FastAPI.
 
-Le prétraitement est ensuite combiné avec le modèle de Machine Learning dans un pipeline `scikit-learn`.
+## 5. Protocole d'évaluation
 
-Cette approche permet de conserver le prétraitement et le modèle dans un même objet. Le pipeline complet peut ainsi être sauvegardé puis réutilisé par FastAPI pour effectuer une prédiction avec exactement les mêmes transformations que celles utilisées pendant l'entraînement.
+### Métriques
 
-## 5. Modèles testés
+- **MAE (Mean Absolute Error)** : erreur absolue moyenne entre les prix réels et prédits, en dollars.
+- **RMSE (Root Mean Squared Error)** : erreur en dollars qui pénalise davantage les erreurs importantes ; elle est donc sensible aux véhicules très chers.
+- **R² (coefficient de détermination)** : part de la variance du prix expliquée par le modèle par rapport à une prédiction constante égale à la moyenne. Un R² de 0 correspond à cette prédiction constante et un R² peut être négatif. Il ne s'agit pas d'un pourcentage de prédictions correctes.
 
-Plusieurs modèles de régression ont été testés afin de comparer différentes approches de prédiction.
+### Validation
+
+- Tous les modèles sont entraînés et évalués sur la même séparation train/test.
+- Les principaux modèles sont également évalués par **validation croisée à 5 plis** (`cross_val_score`, scoring R²) sur l'ensemble des 1 748 véhicules. On rapporte la moyenne et la dispersion des scores.
+- Pour RidgeCV et ElasticNetCV, une **validation croisée interne à 5 plis** sur les données d'entraînement sélectionne automatiquement les hyperparamètres.
+
+### Limites du protocole
+
+- Il n'y a pas de jeu de validation distinct : le jeu de test a été utilisé pour comparer les variantes (profondeur des arbres, configurations XGBoost) et pour choisir le champion. Son score est donc une estimation légèrement optimiste.
+- La validation croisée externe inclut les observations du jeu de test, utilise des plis sans mélange et n'est calculée qu'avec le R².
+- Les scores dépendent des véhicules tirés pour le test. Avant la correction de l'ordre des lignes, deux exécutions précédentes (runs MLflow supprimés) avaient produit d'autres découpages : la MAE d'ElasticNetCV y valait 1 776 $ et 1 821 $, contre 1 800 $ aujourd'hui. Cet écart est du même ordre que celui qui sépare les meilleurs modèles.
+
+## 6. Modèles testés
+
+La comparaison complète est réalisée dans `notebooks/02_modelisation.ipynb`.
+
+### DummyRegressor
+
+Modèle de référence minimale qui prédit toujours la moyenne (ou la médiane) des prix d'entraînement, sans utiliser les caractéristiques. Il permet de vérifier que les autres modèles apprennent réellement une relation.
 
 ### Linear Regression
 
-La régression linéaire a été utilisée comme premier modèle de référence.
+La régression linéaire représente le prix comme une combinaison linéaire des variables. Elle constitue le premier véritable modèle prédictif.
 
-Elle cherche à représenter la relation entre les caractéristiques des véhicules et leur prix à l'aide d'une relation linéaire.
+### Ridge, Lasso et ElasticNet
 
-Ce modèle permet d'obtenir une base de comparaison simple avant de tester des modèles avec régularisation ou des modèles plus complexes.
+Ces modèles ajoutent une pénalité sur la taille des coefficients afin de limiter la variance, particulièrement utile avec 288 colonnes pour 1 398 observations :
 
-### Ridge
+- **Ridge** (pénalité L2) réduit tous les coefficients sans les annuler. Configurations : `alpha = 1`, `alpha = 10`, puis RidgeCV avec `alpha` ∈ {0,01 ; 0,1 ; 1 ; 10 ; 100} → `alpha = 1` retenu.
+- **Lasso** (pénalité L1) peut annuler certains coefficients. Configurations : `alpha = 1` et `alpha = 10`, avec `max_iter = 10000`.
+- **ElasticNet** combine les deux pénalités. Configuration initiale `alpha = 1`, `l1_ratio = 0.5`, puis ElasticNetCV avec `alpha` ∈ {0,001 ; 0,01 ; 0,1 ; 1 ; 10} et `l1_ratio` ∈ {0,1 ; 0,5 ; 0,9} → `alpha = 0.001`, `l1_ratio = 0.5` retenus.
 
-Ridge est une variante de la régression linéaire qui ajoute une régularisation afin de limiter l'importance excessive de certains coefficients.
+### DecisionTreeRegressor
 
-Deux configurations ont été testées :
+Un arbre de décision peut représenter des relations non linéaires et des interactions. Plusieurs valeurs de `max_depth` (3, 5, 10, aucune limite) et de `min_samples_leaf` (1, 2, 5, 10, 20) ont été testées.
 
-- `alpha = 1`
-- `alpha = 10`
+### RandomForestRegressor (bagging)
 
-### Lasso
+Ensemble d'arbres entraînés sur des échantillons bootstrap dont les prédictions sont moyennées, ce qui réduit la variance. Configurations : 100 arbres, 200 arbres, 100 arbres avec `max_depth = 10`.
 
-Lasso est également une régression linéaire régularisée. Contrairement à Ridge, sa régularisation peut réduire certains coefficients jusqu'à zéro.
+### XGBoost (boosting)
 
-Deux configurations ont été testées :
+Ensemble d'arbres peu profonds construits de manière séquentielle, chaque arbre corrigeant une partie des erreurs des précédents. Configuration de référence : 100 arbres, `learning_rate = 0.1`, `max_depth = 3`. Cinq autres configurations ont été testées sans amélioration sur le jeu de test.
 
-- `alpha = 1`
-- `alpha = 10`
+## 7. Résultats et analyse
 
-Pour les expérimentations Lasso, `max_iter=10000` a été utilisé afin de permettre au modèle de disposer d'un nombre suffisant d'itérations pour converger.
-
-### Random Forest Regressor
-
-Random Forest est un modèle basé sur un ensemble d'arbres de décision. Il permet de représenter des relations plus complexes et non linéaires entre les caractéristiques d'un véhicule et son prix.
-
-Deux configurations ont été comparées :
-
-- `n_estimators = 100`
-- `n_estimators = 200`
-
-Le paramètre `n_estimators` représente le nombre d'arbres utilisés par la forêt.
-
-### Résumé des configurations
-
-Au total, sept runs valides ont été réalisés :
-
-1. `linear_regression`
-2. `ridge_alpha_1`
-3. `ridge_alpha_10`
-4. `lasso_alpha_1`
-5. `lasso_alpha_10`
-6. `random_forest_100`
-7. `random_forest_200`
-
-## 6. Expérimentations MLflow
-
-MLflow a été utilisé pour assurer le suivi des différentes expérimentations réalisées pendant la phase de modélisation.
-
-Les expérimentations sont réalisées dans le notebook :
-
-`notebooks/03_mlflow_experimentations.ipynb`
-
-L'expérience MLflow créée pour le projet est :
-
-`prediction_prix_automobile`
-
-Chaque configuration de modèle est exécutée dans un run distinct afin de pouvoir comparer les résultats dans l'interface MLflow.
-
-### Informations enregistrées
-
-Pour chaque run, MLflow permet d'enregistrer les principales informations nécessaires à la comparaison des expérimentations.
-
-Les éléments suivis comprennent notamment :
-
-- le nom du modèle ;
-- les hyperparamètres utilisés ;
-- les métriques obtenues ;
-- le modèle entraîné.
-
-Les principaux hyperparamètres suivis dépendent du modèle testé. Par exemple :
-
-- `alpha` pour Ridge et Lasso ;
-- `n_estimators` pour Random Forest.
-
-### Métriques utilisées
-
-Trois métriques de régression sont utilisées pour évaluer les modèles :
-
-**MAE — Mean Absolute Error**
-
-La MAE représente l'erreur absolue moyenne entre les prix réels et les prix prédits. Une valeur plus faible indique de meilleures prédictions en moyenne.
-
-**RMSE — Root Mean Squared Error**
-
-Le RMSE mesure également l'erreur de prédiction, mais pénalise davantage les erreurs importantes. Une valeur plus faible est recherchée.
-
-**R² — Coefficient de détermination**
-
-Le R² mesure la proportion de la variation du prix expliquée par le modèle. Une valeur plus élevée indique que le modèle explique une plus grande partie de la variation observée dans les données.
-
-### Suivi des runs
-
-Sept runs valides ont été conservés dans l'expérience :
-
-- `linear_regression`
-- `ridge_alpha_1`
-- `ridge_alpha_10`
-- `lasso_alpha_1`
-- `lasso_alpha_10`
-- `random_forest_100`
-- `random_forest_200`
-
-L'interface MLflow permet ensuite de sélectionner plusieurs runs et de comparer directement leurs paramètres et leurs métriques.
-
-### Capture de l'expérience MLflow
-
-![Liste des runs MLflow](figures/mlflow_runs.png)
-
-*Figure 1 — Liste des sept runs de l'expérience `prediction_prix_automobile` dans MLflow.*
-
-
-## 7. Tableau comparatif des runs
-
-Les résultats obtenus pour les sept runs MLflow sont présentés dans le tableau suivant.
-
-| Run MLflow | Modèle | Configuration | MAE | RMSE | R² |
+| Modèle | Configuration | MAE ($) | RMSE ($) | R² test | R² CV (moyenne ± écart-type) |
 |---|---|---:|---:|---:|---:|
-| `linear_regression` | Linear Regression | Baseline | 2281.56 | 3336.21 | 0.7543 |
-| `ridge_alpha_1` | Ridge | alpha = 1 | 3915.52 | 5000.92 | 0.4479 |
-| `ridge_alpha_10` | Ridge | alpha = 10 | 3920.92 | 5005.06 | 0.4470 |
-| `lasso_alpha_1` | Lasso | alpha = 1 | **1858.34** | **2888.81** | **0.8158** |
-| `lasso_alpha_10` | Lasso | alpha = 10 | 2113.45 | 2894.33 | 0.8151 |
-| `random_forest_100` | Random Forest | n_estimators = 100 | 2563.30 | 3574.42 | 0.7179 |
-| `random_forest_200` | Random Forest | n_estimators = 200 | 2562.11 | 3552.18 | 0.7214 |
+| DummyRegressor | moyenne | 5 741 | 7 872 | -0,016 | — |
+| DummyRegressor | médiane | 5 543 | 7 814 | -0,002 | — |
+| LinearRegression | — | 2 274 | 4 243 | 0,705 | 0,723 ± 0,110 |
+| Ridge | alpha = 1 | 1 832 | 3 777 | 0,766 | 0,769 ± 0,108 |
+| RidgeCV | alpha choisi = 1 | 1 832 | 3 777 | 0,766 | 0,764 ± 0,103 |
+| Lasso | alpha = 1 | **1 726** | 3 848 | 0,757 | 0,755 ± 0,100 |
+| **ElasticNetCV** | alpha = 0,001 ; l1_ratio = 0,5 | 1 800 | **3 751** | **0,769** | **0,772 ± 0,108** |
+| DecisionTree | min_samples_leaf = 2 | 2 582 | 4 653 | 0,645 | 0,455 ± 0,208 |
+| RandomForest | 100 arbres | 1 973 | 4 537 | 0,662 | 0,711 ± 0,102 |
+| XGBoost | 100 arbres, lr 0,1, profondeur 3 | 2 109 | 4 503 | 0,668 | 0,769 ± 0,054 |
 
-### Analyse des résultats
+Autres variantes, évaluées sur le jeu de test uniquement : Ridge `alpha=10` (MAE 2 137 $, R² 0,726), Lasso `alpha=10` (MAE 2 136 $, R² 0,712), ElasticNet `alpha=1`, `l1_ratio=0.5` (MAE 3 424 $, R² 0,494), RandomForest 200 arbres (R² 0,655), RandomForest `max_depth=10` (R² 0,622).
 
-Les résultats montrent des différences importantes entre les modèles testés.
+### Analyse
 
-La régression linéaire obtient une MAE de **2281.56**, un RMSE de **3336.21** et un R² de **0.7543**. Elle fournit donc une base de comparaison intéressante pour les autres modèles.
+- **Tous les modèles dépassent nettement la référence** : la MAE passe d'environ 5 700 $ à 1 700–2 600 $.
+- **Régularisation** : avec `alpha = 1`, Ridge et Lasso réduisent nettement la MAE par rapport à la régression linéaire. Une régularisation trop forte dégrade les résultats (Ridge et Lasso `alpha=10`, ElasticNet `alpha=1`) : c'est un sous-apprentissage. Comme la régression linéaire n'utilise pas de standardisation, l'écart observé combine l'effet de la régularisation et celui de la standardisation.
+- **Arbre de décision** : sans contrainte, il obtient un R² de 1,0 à l'entraînement et d'environ 0,51 au test, ce qui montre un fort surapprentissage. `min_samples_leaf = 2` améliore le R² test (environ 0,64), mais le modèle reste très instable en validation croisée.
+- **Ensembles** : RandomForest n'améliore pas les modèles linéaires et le nombre d'arbres a peu d'effet. XGBoost obtient un R² moyen en validation croisée presque égal à celui d'ElasticNetCV (0,769 contre 0,772), avec la plus faible dispersion entre les plis, mais un R² test nettement inférieur (environ 0,67) et un écart entraînement/test important (R² entraînement d'environ 0,90).
+- **Écarts entre les meilleurs modèles** : les modèles linéaires régularisés sont séparés de moins de 0,02 de R² moyen en validation croisée, alors que l'écart-type entre les plis est d'environ 0,10. Ces écarts ne permettent pas de conclure à une supériorité significative d'un modèle.
 
-Les deux configurations Ridge obtiennent les performances les plus faibles de cette expérimentation, avec un R² d'environ **0.45** et un RMSE supérieur à **5000**.
+## 8. Expérimentations MLflow
 
-Les deux modèles Lasso obtiennent les meilleurs R², avec des valeurs supérieures à **0.815**. La configuration `lasso_alpha_1` se distingue également par la MAE et le RMSE les plus faibles de tous les runs.
+Les runs finaux sont enregistrés dans `notebooks/03_mlflow_experimentations_final.ipynb`, dans l'expérience MLflow **`prediction_prix_automobile_final`** (base `notebooks/mlflow.db`).
 
-Les deux configurations Random Forest obtiennent des résultats relativement proches. Le passage de 100 à 200 arbres améliore légèrement le RMSE et le R², mais cette amélioration reste faible.
+Ce notebook reprend les cinq modèles retenus à l'issue du notebook 02 : LinearRegression, RidgeCV, Lasso (`alpha=1`), ElasticNetCV et XGBoost. Tous utilisent la même séparation train/test, les mêmes métriques et une validation croisée externe à 5 plis.
 
-Globalement, `lasso_alpha_1` présente les meilleures performances parmi les configurations testées sur le jeu de test utilisé dans cette expérimentation.
+Pour chaque run, MLflow enregistre :
 
-![Comparaison des métriques MLflow](figures/mlflow_comparaison.png)
+- les paramètres communs : `test_size`, `random_state_split`, `dataset_rows` ;
+- les hyperparamètres du modèle, ainsi que `selected_alpha` et `selected_l1_ratio` pour les modèles sélectionnés par validation croisée ;
+- les métriques `mae`, `rmse`, `r2_test` et `r2_cv_mean` ;
+- le pipeline complet entraîné.
 
-*Figure 2 — Comparaison des métriques MAE, R² et RMSE des sept runs de l'expérience `prediction_prix_automobile` dans MLflow.*
+| Run MLflow | MAE ($) | RMSE ($) | R² test | R² CV moyen |
+|---|---:|---:|---:|---:|
+| `final_elasticnetcv` | 1 800,09 | 3 751,06 | 0,7692 | 0,7716 |
+| `final_ridgecv` | 1 831,63 | 3 777,28 | 0,7660 | 0,7636 |
+| `final_lasso_alpha_1` | 1 725,97 | 3 847,80 | 0,7572 | 0,7549 |
+| `final_linearregression` | 2 274,19 | 4 242,58 | 0,7048 | 0,7227 |
+| `final_xgboost` | 2 109,02 | 4 502,50 | 0,6675 | 0,7687 |
 
-## 8. Choix du meilleur modèle
+### Expériences non présentes dans MLflow
 
-À la suite de la comparaison des sept runs, le modèle **Lasso avec `alpha=1`** a été sélectionné comme modèle final.
+- **Modèles écartés dans le notebook 02** : Dummy, arbre de décision, RandomForest et variantes de Ridge, Lasso, ElasticNet et XGBoost ne sont pas journalisés. Le notebook 03 final est volontairement limité aux modèles retenus ; les résultats de ces modèles restent disponibles dans le notebook 02.
+- **Runs supprimés** : 25 runs d'exécutions antérieures du notebook final ont été supprimés. Trois séries étaient identiques entre elles (deux runs XGBoost y avaient échoué lors de l'enregistrement du modèle) ; deux autres séries avaient été obtenues avant que l'ordre des lignes soit rendu reproductible, sur d'autres découpages train/test. Elles ne sont pas mélangées à la comparaison actuelle, mais montrent la sensibilité des scores au découpage.
+- **Version initiale** : l'expérience `prediction_prix_automobile`, réalisée sur un dataset de 543 véhicules sans standardisation (notebook `backup_03_mlflow_experimentations.ipynb`), n'est plus présente dans `mlflow.db`. Ses résultats ne sont pas comparables aux résultats actuels.
 
-Sur le jeu de test utilisé, il obtient :
+> Les captures `figures/mlflow_runs.png` et `figures/mlflow_comparaison.png` correspondent à la version initiale du projet et doivent être régénérées à partir de l'expérience `prediction_prix_automobile_final`.
 
-- **MAE : 1858.34**
-- **RMSE : 2888.81**
-- **R² : 0.8158**
+## 9. Choix du meilleur modèle
 
-Parmi les configurations testées, `lasso_alpha_1` présente simultanément :
+Le modèle **ElasticNetCV** (`alpha = 0.001`, `l1_ratio = 0.5`) a été sélectionné comme modèle champion.
 
-- la MAE la plus faible ;
-- le RMSE le plus faible ;
-- le R² le plus élevé.
+Parmi les cinq runs finaux, il obtient :
 
-La MAE de **1858.34** signifie que l'écart absolu entre le prix prédit et le prix réel est d'environ **1 858 $ en moyenne** sur le jeu de test.
+- le R² test le plus élevé : **0,769** ;
+- le RMSE le plus faible : **3 751 $** ;
+- la deuxième meilleure MAE : **1 800 $**, derrière Lasso `alpha=1` (1 726 $) ;
+- le R² moyen en validation croisée le plus élevé : **0,772**, devant XGBoost (0,769).
 
-Le R² de **0.8158** indique que, sur ce jeu de test, le modèle explique environ **81,6 % de la variation observée du prix des véhicules**.
+La MAE de **1 800 $** est la moyenne des erreurs absolues : sur le jeu de test, le prix prédit s'écarte en moyenne d'environ 1 800 $ du prix réel.
 
-Lasso avec `alpha=10` obtient un R² très proche, mais sa MAE est plus élevée. La configuration `alpha=1` offre donc de meilleurs résultats globaux selon les trois métriques utilisées dans cette expérimentation.
+Le R² de **0,769** indique que le modèle réduit d'environ 77 % l'erreur quadratique par rapport à une prédiction constante égale au prix moyen. Il ne s'agit pas d'un pourcentage de prédictions correctes.
 
-Le pipeline complet de `lasso_alpha_1`, comprenant le prétraitement des données et le modèle, a été sauvegardé dans :
+ElasticNetCV a été retenu pour son meilleur compromis entre performance sur le jeu de test, stabilité en validation croisée et simplicité : c'est un modèle linéaire, interprétable, dont les hyperparamètres ont été choisis par validation croisée interne. XGBoost, malgré un R² moyen en validation croisée presque égal, obtient des résultats nettement plus faibles sur le jeu de test.
 
-`models/best_model.joblib`
-
-Ce fichier constitue le modèle final utilisé par l'API FastAPI pour effectuer les prédictions.
+Le pipeline complet d'ElasticNetCV, comprenant le prétraitement et le modèle, est sauvegardé dans `models/best_model.joblib`.
 
 ### Précaution d'interprétation
 
-Le choix du modèle final repose sur les performances obtenues avec une seule séparation train/test utilisant `random_state=42`.
+Le choix repose sur une seule séparation train/test et sur un jeu de test également utilisé pour la sélection. Les écarts avec Ridge et Lasso sont faibles et inférieurs à la variabilité observée entre les plis de validation croisée. ElasticNetCV est donc le meilleur compromis **parmi les configurations testées**, sans que sa supériorité soit démontrée statistiquement.
 
-Les résultats montrent donc que Lasso avec `alpha=1` est le meilleur modèle **parmi les configurations testées et pour cette séparation des données**. Ils ne permettent pas d'affirmer qu'il serait systématiquement le meilleur sur toutes les nouvelles données.
+## 10. Description de l'API FastAPI
 
-## 9. Description de l'API FastAPI
-
-Une API a été développée avec **FastAPI** afin de rendre le modèle de prédiction accessible indépendamment de l'interface utilisateur.
-
-Le code de l'API se trouve dans :
-
-`api/main.py`
+Une API a été développée avec **FastAPI** afin de rendre le modèle de prédiction accessible indépendamment de l'interface utilisateur. Le code se trouve dans `api/main.py`.
 
 ### Chargement du modèle
 
-Au démarrage de l'API, le pipeline sélectionné lors des expérimentations est chargé depuis :
+Au démarrage, l'API charge le pipeline sauvegardé dans `models/best_model.joblib`, qui contient le prétraitement des variables et le modèle ElasticNetCV.
 
-`models/best_model.joblib`
+### Routes
 
-Ce fichier contient à la fois :
+- `GET /` : retourne un message d'accueil et le nom du modèle champion.
+- `POST /predict` : reçoit les caractéristiques d'un véhicule au format JSON et retourne le prix prédit, le nom du modèle et la valeur de `alpha`.
 
-- le prétraitement des variables ;
-- le modèle Lasso sélectionné.
-
-L'API utilise donc directement le pipeline final sauvegardé à la suite des expérimentations.
-
-### Route de prédiction
-
-La principale route de l'API est :
-
-`POST /predict`
-
-Cette route reçoit les caractéristiques d'un véhicule sous forme de données JSON.
-
-Par exemple :
+Exemple de requête :
 
 ```json
 {
@@ -337,176 +257,91 @@ Par exemple :
 }
 ```
 
-![Test de la route POST predict avec FastAPI](figures/fastapi_predict.png)
+Réponse obtenue avec le modèle champion actuel :
 
-*Figure 3 — Test de la route `POST /predict` dans Swagger. L'API retourne une réponse HTTP 200 contenant le prix prédit ainsi que les informations sur le modèle Lasso utilisé.*
+```json
+{
+  "prediction": 32763.83,
+  "model_name": "ElasticNetCV",
+  "alpha": 0.001
+}
+```
 
+> La capture `figures/fastapi_predict.png` a été réalisée avec la version initiale du modèle (Lasso) et doit être régénérée.
 
-## 10. Description de l'interface Streamlit
+## 11. Description de l'interface Streamlit
 
-Une interface utilisateur a été développée avec **Streamlit** afin de permettre d'utiliser le modèle de prédiction sans avoir à envoyer manuellement une requête à l'API.
-
-Le code de l'interface se trouve dans :
-
-`app/streamlit_app.py`
+Une interface utilisateur a été développée avec **Streamlit** (`app/streamlit_app.py`) afin de permettre d'utiliser le modèle sans envoyer manuellement une requête à l'API.
 
 ### Saisie des caractéristiques
 
-L'interface permet à l'utilisateur de saisir les différentes caractéristiques nécessaires à la prédiction du prix d'un véhicule, notamment :
-
-- l'année ;
-- le kilométrage ;
-- le nombre de portes ;
-- le nombre de passagers ;
-- la marque ;
-- le modèle ;
-- le type de carrosserie ;
-- le groupe motopropulseur ;
-- le carburant ;
-- la transmission ;
-- la couleur.
-
-Une fois les informations saisies, l'utilisateur peut demander une estimation du prix.
+L'utilisateur saisit l'année, le kilométrage, le nombre de portes, le nombre de passagers, la marque, le modèle, le type de carrosserie, le groupe motopropulseur, le carburant, la transmission et la couleur, puis demande une estimation du prix.
 
 ### Communication avec FastAPI
 
-Streamlit n'effectue pas directement la prédiction.
-
-Lorsqu'une prédiction est demandée, l'application construit les données du véhicule puis les transmet à la route `POST /predict` de FastAPI à l'aide d'une requête HTTP.
-
-L'architecture utilisée est donc :
+Streamlit n'effectue pas directement la prédiction. L'application transmet les données à la route `POST /predict` de FastAPI par une requête HTTP. L'adresse de l'API est configurable avec la variable d'environnement `API_URL`.
 
 **Utilisateur → Streamlit → requête HTTP → FastAPI → pipeline ML → prédiction → FastAPI → Streamlit**
 
-Cette séparation permet de centraliser la logique de prédiction dans FastAPI. Streamlit joue uniquement le rôle d'interface utilisateur.
-
 ### Affichage du résultat
 
-Après réception de la réponse de FastAPI, l'interface affiche :
+Après réception de la réponse, l'interface affiche le prix prédit, le nom du modèle utilisé et la valeur du paramètre `alpha`. Pour le véhicule de l'exemple ci-dessus, le prix prédit par le modèle champion est d'environ **32 763,83 $**.
 
-- le prix prédit du véhicule ;
-- le nom du modèle utilisé ;
-- la valeur du paramètre `alpha`.
+> La capture `figures/streamlit_prediction.png` a été réalisée avec la version initiale du modèle (Lasso) et doit être régénérée.
 
-Pour le véhicule utilisé lors du test de l'application, l'interface affiche un prix prédit d'environ :
+### Conteneurisation et intégration continue
 
-**36 018,41 $**
+Les deux composants disposent d'un Dockerfile (`Dockerfile.api`, `Dockerfile.streamlit`) et peuvent être lancés ensemble avec `docker compose up --build`. Un workflow GitHub Actions exécute les tests (`pytest`) puis construit les deux images Docker à chaque push ou pull request sur `main`.
 
-Le modèle indiqué par l'API est :
+## 12. Limites du projet
 
-**Lasso — alpha = 1**
+### Taille et représentativité du dataset
 
-![Prédiction depuis l'interface Streamlit](figures/streamlit_prediction.png)
+Le dataset contient 1 748 véhicules provenant d'un seul concessionnaire et peu de véhicules haut de gamme. Les prix utilisés sont des prix affichés et non des prix de vente.
 
-*Figure 4 — Prédiction du prix d'un véhicule depuis l'interface Streamlit. Le prix prédit est de 36 018,41 $ avec le modèle Lasso utilisant alpha = 1.*
+### Protocole d'évaluation
 
-## 11. Limites du projet
+- Les modèles sont comparés sur une seule séparation train/test (`random_state=42`).
+- Il n'y a pas de jeu de validation distinct : le jeu de test a servi à la sélection des variantes et du champion.
+- La validation croisée externe inclut le jeu de test, n'utilise pas de mélange et n'est calculée qu'avec le R².
+- Aucun test statistique n'a été réalisé pour comparer les modèles.
 
-Même si le projet permet d'obtenir un modèle fonctionnel et de réaliser une chaîne complète allant des données jusqu'à l'interface utilisateur, certaines limites doivent être prises en compte.
+### Comparaison entre régression linéaire et modèles régularisés
 
-### Taille du dataset
+Sur la matrice creuse produite par l'encodage, `LinearRegression` utilise un solveur itératif (`lsqr`) qui s'arrête avant le minimum des moindres carrés (R² d'entraînement d'environ 0,86 au lieu de 0,95). Ses scores sont donc sous-estimés et varient légèrement d'une exécution à l'autre. Une vérification réalisée hors notebook et hors MLflow, par résolution exacte sur matrice dense, donne une MAE d'environ 1 690 $, un R² test d'environ 0,766 et un R² moyen en validation croisée d'environ 0,765, au niveau des modèles régularisés. L'apport de la régularisation n'est donc pas démontré sur ces données ; ce résultat reste à intégrer au notebook.
 
-Le dataset utilisé pour la modélisation contient seulement **543 observations** après nettoyage.
+### Catégories rares
 
-Cette quantité de données est suffisante pour réaliser le projet et comparer différentes approches, mais elle reste relativement faible pour représenter toute la diversité du marché automobile.
+Les véhicules dont le modèle commercial est rare ou absent des données d'entraînement produisent les erreurs les plus importantes. Une catégorie inconnue est ignorée par l'encodage, ce qui empêche le modèle d'utiliser l'information correspondante.
 
-Les performances obtenues doivent donc être interprétées dans le contexte de ce dataset.
+### Hyperparamètres
 
-### Évaluation sur une seule séparation train/test
+La valeur `alpha = 0.001` retenue par ElasticNetCV se situe à la limite inférieure de la grille testée. Les modèles à base d'arbres ont été réglés à partir du jeu de test plutôt que par validation croisée.
 
-Les différents modèles ont été comparés à partir d'une seule séparation des données avec :
+### Environnement
 
-`random_state=42`
+L'application est exécutée localement ou avec Docker. Elle ne comprend pas encore les éléments nécessaires à un déploiement en production (hébergement, sécurité, supervision, mise à l'échelle).
 
-Les résultats peuvent varier si les observations utilisées pour l'entraînement et le test sont réparties différemment.
+## 13. Améliorations possibles
 
-Le modèle sélectionné est donc celui qui obtient les meilleures performances pour la séparation utilisée dans cette expérimentation.
+- Utiliser un jeu de validation distinct ou une validation croisée imbriquée afin de conserver un jeu de test réellement final.
+- Utiliser une validation croisée avec mélange et calculer également la MAE et le RMSE par pli.
+- Réentraîner la régression linéaire avec un solveur exact (matrice dense) et l'enregistrer dans MLflow.
+- Étendre la grille de `alpha` d'ElasticNetCV sous 0,001.
+- Regrouper les modèles rares ou tester une transformation logarithmique du prix pour réduire l'influence des véhicules très chers.
+- Régler les modèles à base d'arbres avec `GridSearchCV` ou `RandomizedSearchCV`.
+- Ajouter des tests automatisés pour la route `/predict`.
+- Déployer FastAPI et Streamlit dans un environnement accessible à distance.
+- Régénérer les captures MLflow, FastAPI et Streamlit avec la version actuelle du projet.
 
-### Absence de standardisation des variables numériques
-
-Les variables numériques ont été utilisées sans standardisation.
-
-Cette décision peut avoir un impact sur certains modèles linéaires régularisés comme Ridge et Lasso, puisque les variables peuvent avoir des échelles très différentes. Par exemple, le kilométrage peut atteindre plusieurs milliers de kilomètres alors que le nombre de portes reste une petite valeur.
-
-L'effet d'une standardisation des variables numériques n'a pas été évalué dans la version actuelle du projet.
-
-### Nombre limité de modèles et d'hyperparamètres
-
-Le projet compare plusieurs modèles et sept runs MLflow, mais l'espace des configurations testées reste volontairement limité.
-
-Par exemple, seules deux valeurs de `alpha` ont été testées pour Ridge et Lasso et deux nombres d'arbres ont été testés pour Random Forest.
-
-Il est donc possible que d'autres configurations obtiennent de meilleures performances.
-
-### Environnement local
-
-FastAPI, Streamlit et MLflow sont actuellement exécutés localement.
-
-Le projet démontre le fonctionnement complet de l'architecture, mais il ne comprend pas encore les éléments nécessaires à un déploiement en production tels que l'hébergement, la gestion de la sécurité, la supervision ou la mise à l'échelle de l'application.
-
-## 12. Améliorations possibles
-
-Plusieurs améliorations pourraient être apportées afin de rendre l'évaluation des modèles plus robuste et de faire évoluer l'application.
-
-### Utiliser davantage de données
-
-L'ajout de véhicules supplémentaires permettrait d'obtenir un dataset plus représentatif de la diversité du marché automobile.
-
-Un volume de données plus important permettrait également de mieux représenter les différentes marques, modèles, années et configurations de véhicules.
-
-### Ajouter une validation croisée
-
-Dans la version actuelle, les modèles sont évalués à partir d'une seule séparation train/test.
-
-L'utilisation de la validation croisée permettrait d'évaluer chaque modèle sur plusieurs partitions des données et d'obtenir une estimation plus robuste de ses performances.
-
-### Évaluer la standardisation des variables numériques
-
-Une amélioration importante serait de tester la standardisation des variables numériques, notamment pour Ridge et Lasso.
-
-Un `StandardScaler` pourrait être intégré au pipeline pour les variables numériques, puis de nouvelles expérimentations MLflow permettraient de comparer les résultats avec ceux obtenus actuellement.
-
-### Tester davantage d'hyperparamètres
-
-Les expérimentations pourraient être étendues avec davantage de valeurs pour les hyperparamètres.
-
-Par exemple :
-
-- tester plusieurs valeurs de `alpha` pour Ridge et Lasso ;
-- tester différents nombres d'arbres pour Random Forest ;
-- explorer d'autres paramètres de Random Forest.
-
-Ces nouvelles configurations pourraient être suivies dans MLflow afin de conserver une comparaison structurée des résultats.
-
-### Ajouter des tests automatisés
-
-Des tests automatisés pourraient être ajoutés afin de vérifier notamment :
-
-- le chargement du modèle ;
-- le format des données envoyées à l'API ;
-- le fonctionnement de la route `/predict` ;
-- le format de la réponse retournée par FastAPI.
-
-### Conteneuriser et déployer l'application
-
-Une évolution possible serait de conteneuriser les différents composants avec Docker afin de faciliter la reproduction et le déploiement de l'environnement.
-
-FastAPI et Streamlit pourraient ensuite être déployés sur un serveur afin de rendre l'application accessible à distance.
-
-Ces améliorations permettraient de faire évoluer le projet actuel vers une architecture plus robuste tout en conservant la même démarche générale.
-
-## 13. Conclusion
+## 14. Conclusion
 
 Ce projet avait pour objectif de développer un modèle de Machine Learning capable d'estimer le prix d'un véhicule automobile à partir de ses caractéristiques et de l'intégrer dans une démarche MLOps simple.
 
-Après la préparation des données, plusieurs modèles et configurations ont été entraînés et suivis avec MLflow. Au total, sept runs ont été comparés à l'aide des métriques MAE, RMSE et R².
+Après la préparation de 1 748 véhicules, plusieurs familles de modèles ont été comparées : une référence naïve, la régression linéaire, des modèles linéaires régularisés, un arbre de décision et deux méthodes d'ensemble. Tous les modèles dépassent nettement la référence. Les modèles linéaires régularisés obtiennent les meilleurs résultats sur le jeu de test, tandis que les modèles à base d'arbres n'apportent pas de gain mesurable sur ce jeu de données.
 
-Parmi les configurations testées, **Lasso avec `alpha=1`** a obtenu les meilleures performances sur le jeu de test utilisé, avec une MAE de **1858.34**, un RMSE de **2888.81** et un R² de **0.8158**.
+**ElasticNetCV** (`alpha = 0.001`, `l1_ratio = 0.5`) a été retenu comme meilleur compromis, avec une MAE de **1 800 $**, un RMSE de **3 751 $**, un R² test de **0,769** et un R² moyen en validation croisée de **0,772**. Les écarts avec Ridge et Lasso restent faibles.
 
-Le pipeline contenant le prétraitement et le modèle sélectionné a ensuite été sauvegardé dans `models/best_model.joblib`.
+Le pipeline contenant le prétraitement et le modèle a été sauvegardé dans `models/best_model.joblib`, puis intégré à une API FastAPI et utilisé par une interface Streamlit, avec une conteneurisation Docker et une intégration continue.
 
-Une API FastAPI a été mise en place afin d'exposer le modèle à travers la route `POST /predict`. Une interface Streamlit communique avec cette API par requête HTTP et permet à un utilisateur de saisir les caractéristiques d'un véhicule puis d'obtenir une estimation de son prix.
-
-Le projet permet ainsi de mettre en pratique les différentes étapes d'un processus de Machine Learning : préparation des données, expérimentation, suivi avec MLflow, comparaison des résultats, sélection et sauvegarde d'un modèle, puis utilisation de celui-ci dans une application.
-
-Les résultats obtenus restent liés au dataset et à la méthode d'évaluation utilisés. Des améliorations telles que la validation croisée, la standardisation des variables numériques et l'utilisation de davantage de données permettraient de poursuivre et de renforcer le projet.
+Les résultats restent liés au dataset et au protocole d'évaluation utilisés. Un jeu de validation distinct, une validation croisée plus complète et une comparaison avec une régression linéaire résolue exactement permettraient de renforcer les conclusions.
