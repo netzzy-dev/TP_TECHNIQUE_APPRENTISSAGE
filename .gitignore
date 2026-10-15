@@ -209,3 +209,4 @@ mlflow.db
 
 mlruns/
 mlflow.db
+/data/interim/vehicles_merged.csv
